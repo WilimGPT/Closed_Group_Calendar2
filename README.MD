@@ -1,378 +1,196 @@
-# **📘 Scheduler MVP**
+# 📘 Closed Group Calendar - Scheduler MVP
 
 ---
 
-## **🧾 Summary**
+## 🧾 Summary
 
-This project is a lightweight Vue.js application for managing teacher availability and booking recurring language courses.  
- The system includes three main functions:
+Closed Group Calendar is an internal scheduling tool for managing teacher availability and booking recurring language courses.
 
-1. **Adding availability slots**
+The system allows administrators to:
 
-2. **Viewing and editing existing availability and courses**
+1. Create and manage repeating availability slots
+2. View, edit, and organise existing courses and sessions
+3. Generate recurring course schedules
+4. Validate bookings against availability and existing sessions
+5. Detect and optionally override scheduling conflicts
 
-3. **Generating and booking new courses**
-
-The app communicates with a backend service that stores teachers, availability slots, and booked courses.
+This project is currently being migrated from a Django + JSON backend to a serverless architecture using Cloudflare.
 
 ---
 
-# **Quick Start (Local Development)**
-Requirements:
-- Python 3.11+
+## 🏗 Architecture Overview
+
+- **Frontend:** Vue.js (admin interface)
+- **API Layer:** Cloudflare Worker using the Hono framework
+- **Database:** Cloudflare D1 (managed SQLite)
+- **Hosting:** Cloudflare Pages (frontend) + Cloudflare Workers (API)
+
+The goal is to maintain a lightweight scheduling engine without running a traditional backend server.
+
+---
+
+# 🚀 Local Development
+
+## Requirements
+
 - Node 18+
 - npm
+- Wrangler CLI (Cloudflare Workers)
+- Cloudflare account
 
-**1. Clone the repo**
-- git clone <repo-url>
-- cd scheduler-mvp
+---
 
-**2. Backend Setup**
-- cd backend
-- python -m venv venv
-- source venv/bin/activate   # Windows: venv\Scripts\activate
-- pip install -r requirements.txt
-- python manage.py runserver
+## 1. Clone the Repository
 
-Backend runs at:
-- http://127.0.0.1:8000
+```bash
+git clone <repo-url>
+cd closed-group-calendar
+```
 
-**3. Frontend Setup**
-In a new terminal:
-- cd frontend
-- npm install
-- npm run serve
+---
+
+## 2. Install and Run Frontend
+
+```bash
+cd frontend
+npm install
+npm run serve
+```
 
 Frontend runs at:
-- http://localhost:8080
+
+```
+http://localhost:8080
+```
 
 ---
 
+## 3. Run Worker API Locally
 
-# **Frontend**
+From project root:
 
+```bash
+wrangler dev
+```
 
-## **🧱 Project Structure**
+The Worker will run locally and connect to a local D1 instance.
 
-`src/`  
-`│`  
-`├── App.vue`  
-`├── api.js`  
-`├── timezones.js`  
-`├── assets/`  
-`│   └── global.css`  
-`└── components/`  
-    `├── AddAvailability.vue`  
-    `├── AvailabilityChecker.vue`  
-    `├── AvailabilityForm.vue`  
-    `├── CourseForm.vue`  
-    `└── ViewAvailability.vue`
+API base URL (local):
 
-
-## **🧩 Component Overview**
-
-### **\#\#\# App.vue**
-
-Acts as a simple switchboard between the 3 main screens:
-
-* **AddAvailability**
-
-* **ViewAvailability**
-
-* **AvailabilityChecker**
-
-No routing library is used; selecting a view renders the corresponding component.
-
-
-
-## **AddAvailability.vue**
-
-Allows an admin to:
-
-* Select a language
-
-* Select a teacher
-
-* Create a new availability slot
-
-It embeds **AvailabilityForm** in `"create"` mode.
-
-**Backend interaction:**
-
-* Retrieves teachers for the selected language
-
-* Sends new availability slot data to the backend
-
-
-
-## **ViewAvailability.vue**
-
-Displays all availability and courses for a selected teacher, split into:
-
-* **Active availability slots**
-
-* **Future availability slots (clickable to edit)**
-
-* **Current courses (read-only)**
-
-* **Future courses (clickable to edit)**
-
-Clicking an item opens either:
-
-* **AvailabilityForm** in `"edit"` mode
-
-* **CourseForm** in `"editMode"`
-
-**Backend interaction:**
-
-* Retrieves all teacher data: availability \+ bookings
-
-* Sends updates or deletions for availability slots
-
-* Sends updates to existing courses
-
-
-
-## **AvailabilityChecker.vue**
-
-Used to generate new courses before booking them.  
- The user selects:
-
-* weekday
-
-* start time
-
-* start date
-
-* session count
-
-* duration
-
-* time zone
-
-* language
-
-* group name
-
-It generates a list of proposed class sessions and passes them into **CourseForm**.
-
-**Backend interaction:**
-
-* Retrieves teachers for availability checking
-
-* Sends final new course booking data
-
-
-
-## **AvailabilityForm.vue**
-
-Reusable form for both creating and editing availability slots.
-
-Features include:
-
-* weekday selection
-
-* start/end time
-
-* start/end date
-
-* timezone
-
-* confirmation modal
-
-* delete button in edit mode
-
-**Emits events back to parent components:**
-
-* `submit`
-
-* `delete`
-
-* `cancel`
-
-No direct backend calls — the parent handles them.
-
-
-
-## **CourseForm.vue**
-
-A shared component used by both:
-
-* **AvailabilityChecker** (to create new courses)
-
-* **ViewAvailability** (to edit existing courses)
-
-CourseForm handles:
-
-* Displaying all generated or existing sessions
-
-* Editing individual session dates/times
-
-* Deleting sessions
-
-* Checking each teacher’s availability
-
-* Checking for booking conflicts
-
-* Allowing the user to force-book despite conflicts
-
-**Emits:**
-
-* `save-course` — containing the full course payload
-
-**Backend interaction:**  
- Handled by parent components:
-
-* Creating a new course
-
-* Updating an existing course
-
-
-
-## **🗂 Utilities**
-
-### **api.js**
-
-Axios wrapper for all backend communication.
-
-### **timezones.js**
-
-List of supported time zones for use across components.
-
+```
+http://localhost:8787/api/
+```
 
 ---
 
-# **Backend (Django)**
+# 🌐 Deployment Model
 
-This backend provides a lightweight JSON-file–based API used by the Vue frontend for managing **teacher availability** and **course scheduling**.  
- Each language (English, Spanish, German…) has its own JSON file stored in `backend/data/`.
+- Frontend is deployed via Cloudflare Pages
+- API runs as a Cloudflare Worker
+- Data is stored in Cloudflare D1
 
+No traditional backend server is required.
 
+---
 
+# 🧱 Project Structure
 
-## **📂 Project Structure**
+```
+frontend/          # Vue.js admin interface
+worker/            # Cloudflare Worker API (Hono)
+migrations/        # D1 SQL schema definitions
+seed-data/         # Optional JSON seed data for import
+wrangler.toml      # Worker configuration
+README.md
+```
 
-`backend/`  
- `├── api/`  
- `│    ├── views.py       # All API endpoints`  
- `│    ├── urls.py        # API route definitions`  
- `│    └── data/`  
- `│         ├── english.json`  
- `│         ├── spanish.json`  
- `│         └── german.json`  
- `└── config/`  
-      `├── settings.py`  
-      `├── urls.py        # Includes api.urls under /api/`
+---
 
+# 🔌 API Layer (Cloudflare Worker + Hono)
 
+The Worker exposes REST-style endpoints designed to match the original Django API shape in order to minimise frontend changes.
 
-## **🗂 Data Format (JSON)**
+Base route:
 
-Each language file contains:
+```
+/api/:language/
+```
 
-* `teachers`
+## Core Endpoints
 
-  * `availabilitySlots`: repeating weekly availability ranges
+- `GET /api/:language/`
+  
+  Returns all teachers, availability slots, courses, and sessions for a given language.
 
-  * `bookings`: confirmed courses with their generated sessions
+- `POST /api/:language/add-availability/`
 
-  * `blockers`: holidays or unavailable periods
+- `POST /api/:language/update-availability/`
 
-* `meta`
+- `POST /api/:language/delete-availability/`
 
-  * metadata such as default timezone or last update timestamp
+- `POST /api/:language/book/:teacherId`
 
+- `POST /api/:language/update-course/:courseId`
 
+- `POST /api/:language/delete-course/:courseId`
+  
+  Deletes a full course and all associated sessions.
 
-## **🔌 API Endpoints**
+Write endpoints may optionally be protected via a shared secret header.
 
-All routes begin with:
+---
 
-`/api/<language>/`
+# 🗄 Database (Cloudflare D1)
 
-### **1\. Get or overwrite the entire dataset**
+The application uses a relational schema equivalent to the previous JSON structure.
 
-`GET    /api/<language>/`  
-`POST   /api/<language>/`
+Core tables:
 
-Used by the frontend to load all teachers, and to save the entire JSON file during development.
+- `teachers`
+- `availability_slots`
+- `courses`
+- `course_sessions`
 
+The Worker assembles relational data into structured JSON responses for the frontend.
 
+Availability validation logic remains primarily in the frontend for now, while the Worker acts as a data access layer.
 
-### **2\. Add a new availability slot**
+---
 
-`POST /api/<language>/add-availability/`
+# 🔄 Migration Background
 
-The frontend sends:
+This project originally used:
 
-* teacherId
+- Django backend
+- JSON file storage per language
 
-* a newly created slot (ID generated on frontend)
+The current architecture replaces that layer with:
 
-The backend appends the slot to that teacher.
+- A serverless API (Cloudflare Worker)
+- A managed SQLite database (D1)
 
+The migration prioritises:
 
+- Maintaining existing frontend behaviour
+- Preserving API shape
+- Allowing incremental feature expansion
+- Removing dependency on a continuously running backend server
 
-### **3\. Update an existing availability slot**
+---
 
-`POST /api/<language>/update-availability/`
+# 🛠 Future Enhancements
 
-The frontend sends:
+- Basic authentication layer
+- Role-based access control
+- Database indexing optimisation
+- More granular API endpoints (avoid full dataset loads)
+- Course archival and reporting features
 
-* teacherId
+---
 
-* slotId
+# 📌 Notes
 
-* updated slot values
+This is an internal tool currently being iterated primarily by a single developer with oversight from a senior engineer. The architecture has been selected to balance simplicity, scalability, and low operational overhead.
 
-The backend finds the slot by ID and replaces its fields.
+The system is intentionally lightweight and modular to allow future restructuring if the project scope expands.
 
-
-
-### **4\. Delete an availability slot**
-
-`POST /api/<language>/delete-availability/`
-
-Removes one slot by ID, without affecting other IDs.
-
-
-
-### **5\. Create a new course (booking)**
-
-`POST /api/<language>/book/<teacherId>`
-
-The frontend sends:
-
-* group name
-
-* generated sessions
-
-* duration \+ timezone
-
-The backend:
-
-* assigns a course ID
-
-* assigns session IDs
-
-* stores the booking under the teacher
-
-
-
-### **6\. Update an existing future course**
-
-`POST /api/<language>/update-course/<courseId>`
-
-Used when editing future courses in the modal.  
- Updates duration, timezone, group name, and session list while keeping:
-
-* the same course ID
-
-* the same session IDs (unless the user deletes a session)
-
-
-
-## **✔ No Database Required**
-
-All data is stored in JSON, making the backend stateless and easy to reset.  
- This can later be replaced with proper Django models when needed.
