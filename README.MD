@@ -1,5 +1,20 @@
 # **📘 Scheduler MVP**
 
+## **🧾 Summary**
+
+This project is a lightweight Vue.js application for managing teacher availability and booking recurring language courses.  
+ The system includes three main functions:
+
+1. **Adding availability slots**
+
+2. **Viewing and editing existing availability and courses**
+
+3. **Generating and booking new courses**
+
+The app communicates with a backend service that stores teachers, availability slots, and booked courses.
+
+---
+
 # **Quick Start (Local Development)**
 Requirements:
 - Python 3.11+
@@ -34,20 +49,6 @@ Frontend runs at:
 
 # **Frontend**
 
-## **🧾 Summary**
-
-This project is a lightweight Vue.js application for managing teacher availability and booking recurring language courses.  
- The system includes three main functions:
-
-1. **Adding availability slots**
-
-2. **Viewing and editing existing availability and courses**
-
-3. **Generating and booking new courses**
-
-The app communicates with a backend service that stores teachers, availability slots, and booked courses.
-
----
 
 ## **🧱 Project Structure**
 
