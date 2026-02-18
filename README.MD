@@ -1,5 +1,7 @@
 # **📘 Scheduler MVP**
 
+---
+
 ## **🧾 Summary**
 
 This project is a lightweight Vue.js application for managing teacher availability and booking recurring language courses.  
@@ -66,7 +68,6 @@ Frontend runs at:
     `├── CourseForm.vue`  
     `└── ViewAvailability.vue`
 
----
 
 ## **🧩 Component Overview**
 
@@ -82,7 +83,7 @@ Acts as a simple switchboard between the 3 main screens:
 
 No routing library is used; selecting a view renders the corresponding component.
 
----
+
 
 ## **AddAvailability.vue**
 
@@ -102,7 +103,7 @@ It embeds **AvailabilityForm** in `"create"` mode.
 
 * Sends new availability slot data to the backend
 
----
+
 
 ## **ViewAvailability.vue**
 
@@ -130,7 +131,7 @@ Clicking an item opens either:
 
 * Sends updates to existing courses
 
----
+
 
 ## **AvailabilityChecker.vue**
 
@@ -161,7 +162,7 @@ It generates a list of proposed class sessions and passes them into **CourseForm
 
 * Sends final new course booking data
 
----
+
 
 ## **AvailabilityForm.vue**
 
@@ -191,7 +192,7 @@ Features include:
 
 No direct backend calls — the parent handles them.
 
----
+
 
 ## **CourseForm.vue**
 
@@ -226,7 +227,7 @@ CourseForm handles:
 
 * Updating an existing course
 
----
+
 
 ## **🗂 Utilities**
 
@@ -247,7 +248,7 @@ This backend provides a lightweight JSON-file–based API used by the Vue fronte
  Each language (English, Spanish, German…) has its own JSON file stored in `backend/data/`.
 
 
----
+
 
 ## **📂 Project Structure**
 
@@ -263,7 +264,7 @@ This backend provides a lightweight JSON-file–based API used by the Vue fronte
       `├── settings.py`  
       `├── urls.py        # Includes api.urls under /api/`
 
----
+
 
 ## **🗂 Data Format (JSON)**
 
@@ -281,7 +282,7 @@ Each language file contains:
 
   * metadata such as default timezone or last update timestamp
 
----
+
 
 ## **🔌 API Endpoints**
 
@@ -296,7 +297,7 @@ All routes begin with:
 
 Used by the frontend to load all teachers, and to save the entire JSON file during development.
 
----
+
 
 ### **2\. Add a new availability slot**
 
@@ -310,7 +311,7 @@ The frontend sends:
 
 The backend appends the slot to that teacher.
 
----
+
 
 ### **3\. Update an existing availability slot**
 
@@ -326,7 +327,7 @@ The frontend sends:
 
 The backend finds the slot by ID and replaces its fields.
 
----
+
 
 ### **4\. Delete an availability slot**
 
@@ -334,7 +335,7 @@ The backend finds the slot by ID and replaces its fields.
 
 Removes one slot by ID, without affecting other IDs.
 
----
+
 
 ### **5\. Create a new course (booking)**
 
@@ -356,7 +357,7 @@ The backend:
 
 * stores the booking under the teacher
 
----
+
 
 ### **6\. Update an existing future course**
 
@@ -369,9 +370,9 @@ Used when editing future courses in the modal.
 
 * the same session IDs (unless the user deletes a session)
 
----
+
 
 ## **✔ No Database Required**
 
 All data is stored in JSON, making the backend stateless and easy to reset.  
- This will later be replaced with proper Django models when needed.
+ This can later be replaced with proper Django models when needed.
