@@ -1,0 +1,1862 @@
+{
+  "language": "es",
+  "teachers": [
+    {
+      "id": "es_t1",
+      "name": "Gisela",
+      "availabilitySlots": [
+        {
+          "id": "es_t1_a1",
+          "weekdays": [
+            2,
+            3
+          ],
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "startDate": "2026-01-14",
+          "endDate": "2026-12-30",
+          "timeZone": "Europe/Warsaw"
+        },
+        {
+          "id": "es_t1_a2",
+          "weekdays": [
+            4
+          ],
+          "startTime": "17:00",
+          "endTime": "18:00",
+          "startDate": "2026-01-14",
+          "endDate": "2026-12-30",
+          "timeZone": "Europe/Warsaw"
+        }
+      ],
+      "bookings": [
+        {
+          "id": "es_t1_b1",
+          "groupReference": "Group 38",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-21T18:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-28T18:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-02-04T18:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-11T18:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-18T18:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-25T18:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-03-04T18:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-11T17:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-18T17:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-25T17:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-04-01T18:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-08T18:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-15T18:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-22T18:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-29T18:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-06T18:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-13T18:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-20T18:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-27T18:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-06-03T18:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-10T18:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-17T18:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-24T18:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-07-01T18:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t1_b2",
+          "groupReference": "Group 41",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-20T18:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-27T18:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-02-03T18:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-10T18:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-17T18:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-24T18:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-03-03T18:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-10T17:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-17T17:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-24T17:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-03-31T18:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-07T18:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-14T18:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-21T18:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-28T18:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-05T18:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-12T18:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-19T18:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-26T18:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-06-02T18:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-09T18:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-16T18:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-23T18:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-06-30T18:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t1_b3",
+          "groupReference": "Group 52",
+          "timeZone": "America/New_York",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-03-04T17:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-03-11T18:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-03-18T18:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-03-25T18:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-04-01T17:00+02:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-04-08T17:00+02:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-04-15T17:00+02:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-04-22T17:00+02:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-04-29T17:00+02:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-05-06T17:00+02:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-05-13T17:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-05-20T17:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-05-27T17:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-06-03T17:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-06-10T17:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-06-17T17:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-06-24T17:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-07-01T17:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-07-08T17:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-07-15T17:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-07-22T17:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-07-29T17:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t1_b4",
+          "groupReference": "Group 55",
+          "timeZone": "America/New_York",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-03-05T17:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-03-12T17:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-03-19T17:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-03-26T17:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-04-02T17:00+02:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-04-09T17:00+02:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-04-16T17:00+02:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-04-23T17:00+02:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-04-30T17:00+02:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-05-07T17:00+02:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-05-14T17:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-05-21T17:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-05-28T17:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-06-04T17:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-06-11T17:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-06-18T17:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-06-25T17:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-07-02T17:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-07-09T17:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-07-16T17:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-07-23T17:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-07-30T17:00+02:00"
+            }
+          ]
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "id": "es_t2",
+      "name": "Eloisa",
+      "availabilitySlots": [
+        {
+          "id": "es_t2_a1",
+          "weekdays": [
+            2,
+            3,
+            4
+          ],
+          "startTime": "15:00",
+          "endTime": "17:00",
+          "startDate": "2026-01-14",
+          "endDate": "2026-12-30",
+          "timeZone": "Europe/Warsaw"
+        },
+        {
+          "id": "es_t2_a1",
+          "weekdays": [
+            5
+          ],
+          "startTime": "18:00",
+          "endTime": "20:00",
+          "startDate": "2026-01-14",
+          "endDate": "2026-12-30",
+          "timeZone": "Europe/Warsaw"
+        }
+      ],
+      "bookings": [
+        {
+          "id": "es_t2_b1",
+          "groupReference": "Group 37",
+          "timeZone": "America/New_York",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-20T15:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-27T15:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-02-03T15:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-10T15:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-17T15:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-24T15:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-03-03T15:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-10T15:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-17T15:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-24T15:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-03-31T15:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-07T15:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-14T15:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-21T15:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-28T15:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-05T15:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-12T15:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-19T15:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-26T15:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-06-02T15:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-09T15:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-16T15:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-23T15:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-06-30T15:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t2_b2",
+          "groupReference": "Group 40",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-15T15:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-22T15:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-01-29T15:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-05T15:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-12T15:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-19T15:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-02-26T15:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-05T15:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-12T15:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-19T15:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-03-26T15:00+01:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-02T15:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-09T15:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-16T15:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-23T15:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-04-30T15:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-07T15:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-14T15:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-21T15:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-05-28T15:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-04T15:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-11T15:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-18T15:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-06-25T15:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t2_b3",
+          "groupReference": "Group 45",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-20T16:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-27T16:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-02-03T16:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-10T16:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-17T16:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-24T16:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-03-03T16:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-10T16:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-17T16:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-24T16:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-03-31T16:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-07T16:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-14T16:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-21T16:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-28T16:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-05T16:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-12T16:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-19T16:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-26T16:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-06-02T16:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-09T16:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-16T16:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-23T16:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-06-30T16:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t2_b4",
+          "groupReference": "Group 46",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-21T16:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-28T16:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-02-04T16:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-11T16:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-18T16:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-25T16:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-03-04T16:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-11T15:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-18T15:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-25T15:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-04-01T16:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-08T16:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-15T16:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-22T16:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-29T16:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-06T16:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-13T16:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-20T16:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-27T16:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-06-03T16:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-10T16:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-17T16:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-24T16:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-07-01T16:00+02:00"
+            }
+          ]
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "id": "es_t3",
+      "name": "Thais",
+      "availabilitySlots": [
+        {
+          "id": "es_t3_a1",
+          "weekdays": [
+            2,
+            3
+          ],
+          "startTime": "15:00",
+          "endTime": "19:00",
+          "startDate": "2026-01-14",
+          "endDate": "2026-12-30",
+          "timeZone": "Europe/Warsaw"
+        },
+        {
+          "id": "es_t3_a1",
+          "weekdays": [
+            4
+          ],
+          "startTime": "15:00",
+          "endTime": "18:00",
+          "startDate": "2026-01-14",
+          "endDate": "2026-12-30",
+          "timeZone": "Europe/Warsaw"
+        },
+        {
+          "id": "es_t3_a1",
+          "weekdays": [
+            5
+          ],
+          "startTime": "18:00",
+          "endTime": "22:00",
+          "startDate": "2026-01-14",
+          "endDate": "2026-12-30",
+          "timeZone": "Europe/Warsaw"
+        }
+      ],
+      "bookings": [
+        {
+          "id": "es_t3_b1",
+          "groupReference": "Group 39",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-16T18:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-23T18:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-01-30T18:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-06T18:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-13T18:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-20T18:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-02-27T18:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-06T18:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-13T18:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-20T18:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-03-27T18:00+01:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-03T18:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-10T18:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-17T18:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-24T18:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-01T18:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-08T18:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-15T18:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-22T18:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-05-29T18:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-05T18:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-12T18:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-19T18:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-06-26T18:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t3_b3",
+          "groupReference": "Group 43",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-20T15:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-27T15:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-02-03T15:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-10T15:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-17T15:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-24T15:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-03-03T15:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-10T15:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-17T15:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-24T15:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-03-31T15:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-07T15:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-14T15:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-21T15:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-28T15:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-05T15:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-12T15:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-19T15:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-26T15:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-06-02T15:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-09T15:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-16T15:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-23T15:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-06-30T15:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t3_b4",
+          "groupReference": "Group 44",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-21T18:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-28T18:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-02-04T18:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-11T18:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-18T18:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-25T18:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-03-04T18:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-11T17:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-18T17:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-25T17:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-04-01T18:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-08T18:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-15T18:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-22T18:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-29T18:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-06T18:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-13T18:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-20T18:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-27T18:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-06-03T18:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-10T18:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-17T18:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-24T18:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-07-01T18:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t3_b5",
+          "groupReference": "Group 47",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-20T16:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-27T16:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-02-03T16:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-10T16:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-17T16:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-24T16:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-03-03T16:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-10T16:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-17T16:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-24T16:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-03-31T16:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-07T16:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-14T16:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-21T16:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-28T16:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-05T16:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-12T16:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-19T16:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-26T16:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-06-02T16:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-09T16:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-16T16:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-23T16:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-06-30T16:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t3_b6",
+          "groupReference": "Group 48",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-20T18:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-27T18:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-02-03T18:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-10T18:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-17T18:00+01:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-24T18:00+01:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-03-03T18:00+01:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-10T17:00+01:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-17T17:00+01:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-24T17:00+01:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-03-31T18:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-07T18:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-14T18:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-21T18:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-28T18:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-05T18:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-12T18:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-19T18:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-26T18:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-06-02T18:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-09T18:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-16T18:00+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-23T18:00+02:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-06-30T18:00+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t3_b6",
+          "groupReference": "Group 53",
+          "timeZone": "America/New_York",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-03-06T20:30+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-03-13T19:30+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-03-20T19:30+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-03-27T19:30+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-04-03T20:30+02:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-04-10T20:30+02:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-04-17T20:30+02:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-04-24T20:30+02:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-05-01T20:30+02:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-05-08T20:30+02:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-05-15T20:30+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-05-22T20:30+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-05-29T20:30+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-06-05T20:30+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-06-12T20:30+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-06-19T20:30+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-06-26T20:30+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-07-03T20:30+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-07-10T20:30+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-07-17T20:30+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-07-24T20:30+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-07-31T20:30+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t3_b7",
+          "groupReference": "Group 53",
+          "timeZone": "America/New_York",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-03-06T20:30+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-03-13T19:30+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-03-20T19:30+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-03-27T19:30+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-04-03T20:30+02:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-04-10T20:30+02:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-04-17T20:30+02:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-04-24T20:30+02:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-05-01T20:30+02:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-05-08T20:30+02:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-05-15T20:30+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-05-22T20:30+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-05-29T20:30+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-06-05T20:30+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-06-12T20:30+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-06-26T20:30+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-07-03T20:30+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-07-10T20:30+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-07-17T20:30+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-07-24T20:30+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-07-31T20:30+02:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-08-07T20:30+02:00"
+            }
+          ]
+        },
+        {
+          "id": "es_t3_b8",
+          "groupReference": "Group 54",
+          "timeZone": "America/New_York",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-03-05T17:00+01:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-03-12T16:00+01:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-03-19T16:00+01:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-03-26T16:00+01:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-04-02T17:00+02:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-04-09T17:00+02:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-04-16T17:00+02:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-04-23T17:00+02:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-04-30T17:00+02:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-05-07T17:00+02:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-05-14T17:00+02:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-05-21T17:00+02:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-05-28T17:00+02:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-06-04T17:00+02:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-06-11T17:00+02:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-06-18T17:00+02:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-06-25T17:00+02:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-07-02T17:00+02:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-07-09T17:00+02:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-07-16T17:00+02:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-07-23T17:00+02:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-07-30T17:00+02:00"
+            }
+          ]
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "id": "es_t4",
+      "name": "Carlos",
+      "availabilitySlots": [
+        {
+          "id": "es_t4_a1",
+          "weekdays": [
+            5
+          ],
+          "startTime": "20:00",
+          "endTime": "22:00",
+          "startDate": "2026-01-14",
+          "endDate": "2026-12-30",
+          "timeZone": "Europe/Warsaw"
+        }
+      ],
+      "bookings": [
+        {
+          "id": "es_t3_b2",
+          "groupReference": "Group 42",
+          "timeZone": "America/Los_Angeles",
+          "durationMinutes": 60,
+          "sessions": [
+            {
+              "id": "course_s1",
+              "startDateTime": "2026-01-16T12:00:00.000-08:00"
+            },
+            {
+              "id": "course_s2",
+              "startDateTime": "2026-01-23T12:00:00.000-08:00"
+            },
+            {
+              "id": "course_s3",
+              "startDateTime": "2026-01-30T12:00:00.000-08:00"
+            },
+            {
+              "id": "course_s4",
+              "startDateTime": "2026-02-06T12:00:00.000-08:00"
+            },
+            {
+              "id": "course_s5",
+              "startDateTime": "2026-02-13T12:00:00.000-08:00"
+            },
+            {
+              "id": "course_s6",
+              "startDateTime": "2026-02-20T12:00:00.000-08:00"
+            },
+            {
+              "id": "course_s7",
+              "startDateTime": "2026-02-27T12:00:00.000-08:00"
+            },
+            {
+              "id": "course_s8",
+              "startDateTime": "2026-03-06T12:00:00.000-08:00"
+            },
+            {
+              "id": "course_s9",
+              "startDateTime": "2026-03-13T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s10",
+              "startDateTime": "2026-03-20T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s11",
+              "startDateTime": "2026-03-27T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s12",
+              "startDateTime": "2026-04-03T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s13",
+              "startDateTime": "2026-04-10T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s14",
+              "startDateTime": "2026-04-17T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s15",
+              "startDateTime": "2026-04-24T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s16",
+              "startDateTime": "2026-05-01T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s17",
+              "startDateTime": "2026-05-08T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s18",
+              "startDateTime": "2026-05-15T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s19",
+              "startDateTime": "2026-05-22T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s20",
+              "startDateTime": "2026-05-29T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s21",
+              "startDateTime": "2026-06-05T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s22",
+              "startDateTime": "2026-06-12T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s23",
+              "startDateTime": "2026-06-19T12:00:00.000-07:00"
+            },
+            {
+              "id": "course_s24",
+              "startDateTime": "2026-06-26T12:00:00.000-07:00"
+            }
+          ]
+        }
+      ],
+      "blockers": []
+    }
+  ],
+  "meta": {}
+}

@@ -1,0 +1,49 @@
+{
+  "language": "de",
+  "teachers": [
+    {
+      "id": "de_t1",
+      "name": "Suraj Somkuwar",
+      "availabilitySlots": [
+        {
+          "id": "de_t1_a1",
+          "weekdays": [
+            1,
+            2,
+            4
+          ],
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "startDate": "2026-01-15",
+          "endDate": "2026-10-31",
+          "timeZone": "Europe/Warsaw"
+        },
+        {
+          "id": "de_t1_a2",
+          "weekdays": [
+            3
+          ],
+          "startTime": "09:00",
+          "endTime": "13:00",
+          "startDate": "2026-01-15",
+          "endDate": "2026-10-31",
+          "timeZone": "Europe/Warsaw"
+        },
+        {
+          "id": "de_t1_a3",
+          "weekdays": [
+            5
+          ],
+          "startTime": "09:00",
+          "endTime": "11:00",
+          "startDate": "2026-01-15",
+          "endDate": "2026-10-31",
+          "timeZone": "Europe/Warsaw"
+        }
+      ],
+      "bookings": [],
+      "blockers": []
+    }
+  ],
+  "meta": {}
+}
