@@ -6,9 +6,9 @@
     <div class="form-row">
       <label>Language</label>
       <el-select v-model="language">
-        <el-option label="English" value="english" />
-        <el-option label="Spanish" value="spanish" />
-        <el-option label="German" value="german" />
+        <el-option label="English" value="en" />
+        <el-option label="Spanish" value="es" />
+        <el-option label="German" value="de" />
       </el-select>
     </div>
 
@@ -46,7 +46,7 @@ export default {
 
   data() {
     return {
-      language: "english",
+      language: "en",
       teachers: [],
       teacherId: ""
     }
