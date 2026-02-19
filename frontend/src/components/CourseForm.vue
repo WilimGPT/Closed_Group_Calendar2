@@ -80,6 +80,13 @@
       </table>
     </div>
 
+    <!-- ADD EXTRA CLASS BUTTON (EDIT MODE ONLY) -->
+    <div v-if="editMode && sessions.length" class="extra-class-row">
+      <el-button type="primary" size="mini" @click="openAddClass">
+        Add Extra Class
+      </el-button>
+    </div>
+
     <!-- EDIT SESSION MODAL -->
     <el-dialog title="Edit Session" :visible="editingIndex !== null" width="400px">
       <div class="form-row">
@@ -98,7 +105,29 @@
       </div>
     </el-dialog>
 
-    <!-- DELETE CONFIRM -->
+    <!-- ADD EXTRA CLASS MODAL -->
+    <el-dialog
+      title="Add Extra Class"
+      :visible.sync="showAddClassModal"
+      width="400px"
+    >
+      <div class="form-row">
+        <label>Date</label>
+        <el-date-picker v-model="addClassDate" type="date" />
+      </div>
+
+      <div class="form-row">
+        <label>Time</label>
+        <el-time-picker v-model="addClassTime" format="HH:mm" />
+      </div>
+
+      <div class="dialog-buttons">
+        <el-button @click="showAddClassModal = false">Cancel</el-button>
+        <el-button type="primary" @click="saveNewClass">OK</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- DELETE SESSION CONFIRM -->
     <el-dialog
       title="Confirm Delete"
       :visible.sync="showDeleteModal"
@@ -129,6 +158,30 @@
       </div>
     </el-dialog>
 
+    <!-- DELETE COURSE BUTTON + CONFIRM (EDIT MODE ONLY) -->
+    <div v-if="editMode" class="delete-course-row">
+      <el-button type="danger" @click="showDeleteCourseModal = true">
+        Delete Course
+      </el-button>
+    </div>
+
+    <el-dialog
+      title="Delete Course"
+      :visible.sync="showDeleteCourseModal"
+      width="400px"
+    >
+      <p>
+        Are you sure you want to delete this course and all of its classes?
+      </p>
+
+      <div class="dialog-buttons">
+        <el-button @click="showDeleteCourseModal = false">Cancel</el-button>
+        <el-button type="danger" @click="confirmDeleteCourse">
+          Yes, delete course
+        </el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -150,7 +203,7 @@ export default {
     return {
       // Includes groupReference now
       form: {
-        groupReference: "",    // ← NEW source of truth
+        groupReference: "",
       },
 
       sessions: [],
@@ -164,7 +217,15 @@ export default {
       deleteIndex: null,
 
       showConflictModal: false,
-      pendingTeacher: null
+      pendingTeacher: null,
+
+      // Add Extra Class modal
+      showAddClassModal: false,
+      addClassDate: null,
+      addClassTime: null,
+
+      // Delete Course modal
+      showDeleteCourseModal: false
     }
   },
 
@@ -217,54 +278,70 @@ export default {
           ? slot.weekdays
           : [slot.weekday]
 
-        const slotLocalMoment = sessionUTC.setZone(slot.timeZone)
-        const slotDateISO = slotLocalMoment.toISODate()
+        const slotStart = DateTime.fromISO(
+          `${slot.startDate}T${slot.startTime}`,
+          { zone: slot.timeZone }
+        ).toUTC()
 
-        const slotStart = DateTime.fromISO(`${slotDateISO}T${slot.startTime}`, { zone: slot.timeZone }).toUTC()
-        const slotEnd   = DateTime.fromISO(`${slotDateISO}T${slot.endTime}`,   { zone: slot.timeZone }).toUTC()
+        const slotEnd = DateTime.fromISO(
+          `${slot.endDate}T${slot.endTime}`,
+          { zone: slot.timeZone }
+        ).toUTC()
 
-        return (
-          weekdaysArray.includes(slotLocalMoment.weekday) &&
-          sessionUTC >= slotStart &&
-          endUTC <= slotEnd &&
-          slot.startDate <= slotDateISO &&
-          slot.endDate >= slotDateISO
+        const weekdayOK = weekdaysArray.includes(
+          sessionUTC.setZone(slot.timeZone).weekday
         )
+        const withinDateRange =
+          sessionUTC >= slotStart && endUTC <= slotEnd
+
+        return weekdayOK && withinDateRange
       })
 
-      if (!hasAvailability) {
-        return { teacherId: teacher.id, ok: false, message: "Outside availability" }
-      }
-
-      const isBooked = teacher.bookings.some(b =>
-        b.sessions.some(s => {
-          // 1. Parse start time *in booking’s timezone*
-          const bookingLocal = DateTime.fromISO(s.startDateTime, { zone: b.timeZone })
-
-          // 2. Convert to UTC
-          const bookingUTC = bookingLocal.toUTC()
-
-          // 3. Compare normalised UTC millis
-          return bookingUTC.toMillis() === session.utcDateTime.toMillis()
+      const hasBookingConflict = (teacher.bookings || []).some(course =>
+        course.sessions.some(s => {
+          const cStart = DateTime.fromISO(s.startDateTime).toUTC()
+          const cEnd = cStart.plus({ minutes: course.durationMinutes })
+          return (
+            (sessionUTC >= cStart && sessionUTC < cEnd) ||
+            (endUTC > cStart && endUTC <= cEnd)
+          )
         })
       )
 
-
-      if (isBooked) {
-        return { teacherId: teacher.id, ok: false, message: "Already booked" }
+      if (!hasAvailability) {
+        return {
+          teacherId: teacher.id,
+          ok: false,
+          message: "No availability"
+        }
       }
 
-      return { teacherId: teacher.id, ok: true, message: "Available" }
+      if (hasBookingConflict) {
+        return {
+          teacherId: teacher.id,
+          ok: false,
+          message: "Booking conflict"
+        }
+      }
+
+      return {
+        teacherId: teacher.id,
+        ok: true,
+        message: "OK"
+      }
     },
 
     //---------------------------------------------------------------------
-    // Edit Session
+    // Edit existing session
     //---------------------------------------------------------------------
     openEditor(i) {
-      const s = this.sessions[i]
       this.editingIndex = i
-      this.editDate = s.localDateTime.toJSDate()
-      this.editTime = s.localDateTime.toJSDate()
+
+      const s = this.sessions[i]
+      const local = s.localDateTime.setZone(this.timeZone)
+
+      this.editDate = local.toJSDate()
+      this.editTime = local.toJSDate()
     },
 
     saveEdit() {
@@ -300,6 +377,45 @@ export default {
     },
 
     //---------------------------------------------------------------------
+    // Add Extra Class (session) - edit mode only
+    //---------------------------------------------------------------------
+    openAddClass() {
+      this.addClassDate = null
+      this.addClassTime = null
+      this.showAddClassModal = true
+    },
+
+    saveNewClass() {
+      if (!this.addClassDate || !this.addClassTime) {
+        this.$message.error("Please select both date and time for the new class.")
+        return
+      }
+
+      const datePart = DateTime.fromJSDate(this.addClassDate)
+      const timePart = DateTime.fromJSDate(this.addClassTime)
+
+      const newLocal = datePart
+        .set({
+          hour: timePart.hour,
+          minute: timePart.minute
+        })
+        .setZone(this.timeZone)
+
+      const newSession = {
+        localDateTime: newLocal,
+        utcDateTime: newLocal.toUTC(),
+        isCustom: true
+      }
+
+      this.sessions.push(newSession)
+      this.recheck()
+
+      this.showAddClassModal = false
+      this.addClassDate = null
+      this.addClassTime = null
+    },
+
+    //---------------------------------------------------------------------
     // Booking Actions
     //---------------------------------------------------------------------
     attemptBooking(teacher) {
@@ -327,7 +443,7 @@ export default {
         id: this.editMode ? this.courseId : null,
         teacherId: teacher.id,
         language: this.language,
-        groupReference: this.form.groupReference,   // ← NOW SOURCE OF TRUTH
+        groupReference: this.form.groupReference,
         durationMinutes: this.durationMinutes,
         timeZone: this.timeZone,
 
@@ -350,11 +466,37 @@ export default {
       }
 
       this.$emit("save-course", payload)
+    },
+
+    //---------------------------------------------------------------------
+    // Delete entire course (edit mode only)
+    //---------------------------------------------------------------------
+    confirmDeleteCourse() {
+      this.showDeleteCourseModal = false
+      this.$emit("delete-course", { id: this.courseId })
     }
   }
 }
 </script>
 
 <style scoped>
+/* Wrapper around the course sessions table */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;      /* 👉 horizontal scroll when content is wider */
+}
 
+/* The table itself */
+.availability-table {
+  border-collapse: collapse;
+  width: max-content;    /* size to content so scroll works properly */
+  min-width: 100%;       /* but never smaller than the wrapper */
+}
+
+/* Optional: make cells a bit tighter so more fits on screen */
+.availability-table th,
+.availability-table td {
+  padding: 6px 8px;
+  white-space: nowrap;   /* keep teacher headers on one line */
+}
 </style>

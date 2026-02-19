@@ -100,6 +100,7 @@
 
 <script>
 import timezones from "../timezones"
+import { DateTime } from "luxon"
 
 export default {
   props: {
@@ -155,10 +156,22 @@ export default {
      * -------------------------------------- */
     preloadForm() {
       this.form.weekdays = [...this.initialValue.weekdays]
+
+      // Times: still fine to treat as local wall time
       this.form.startTime = new Date(`1970-01-01T${this.initialValue.startTime}`)
-      this.form.endTime = new Date(`1970-01-01T${this.initialValue.endTime}`)
-      this.form.startDate = new Date(this.initialValue.startDate)
-      this.form.endDate = new Date(this.initialValue.endDate)
+      this.form.endTime   = new Date(`1970-01-01T${this.initialValue.endTime}`)
+
+      // Dates: interpret stored date as a calendar day in the slot's time zone
+      const tz = this.initialValue.timeZone || "UTC"
+
+      this.form.startDate = DateTime
+        .fromISO(this.initialValue.startDate, { zone: tz })
+        .toJSDate()
+
+      this.form.endDate = DateTime
+        .fromISO(this.initialValue.endDate, { zone: tz })
+        .toJSDate()
+
       this.form.timeZone = this.initialValue.timeZone
     },
 
@@ -223,8 +236,15 @@ export default {
       }
     },
 
+    // --- KEY CHANGE: keep date in the teacher's chosen time zone ---
     formatDate(d) {
-      return new Date(d).toISOString().slice(0, 10)
+      if (!d) return null
+
+      // Interpret the JS Date as a moment in the teacher's time zone,
+      // then take just the calendar date (YYYY-MM-DD) in that zone.
+      return DateTime
+        .fromJSDate(d, { zone: this.form.timeZone })
+        .toISODate()
     },
 
     formatTime(t) {
@@ -233,6 +253,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 .weekday-buttons {

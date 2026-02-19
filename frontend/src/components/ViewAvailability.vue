@@ -40,19 +40,22 @@
           <div
             v-for="slot in activeSlots"
             :key="slot.id"
-            class="slot-card"
+            class="slot-card clickable"
+            @click="openEdit(slot)"
           >
             <div><strong>Weekdays:</strong> {{ formatWeekdays(slot.weekdays) }}</div>
             <div><strong>Time:</strong> {{ slot.startTime }} – {{ slot.endTime }}</div>
             <div><strong>Valid:</strong> {{ slot.startDate }} → {{ slot.endDate }}</div>
             <div><strong>Time Zone:</strong> {{ slot.timeZone }}</div>
             <div><strong>Slot ID:</strong> {{ slot.id }}</div>
+            <small class="text-muted">(Click to edit)</small>
           </div>
         </div>
 
         <div v-else class="text-muted mb-4">
           No currently active availability slots.
         </div>
+
 
         <el-divider />
 
@@ -206,6 +209,7 @@
         :durationMinutes="selectedCourse.durationMinutes"
         :timeZone="selectedCourse.timeZone"
         @save-course="handleCourseSave"
+        @delete-course="handleCourseDelete"
       />
 
     </el-dialog>
@@ -326,6 +330,23 @@ export default {
       if (this.teacherId) this.filterAll();
     },
 
+    async handleCourseDelete(payload) {
+      try {
+        await api.post(`${this.language}/delete-course/${payload.id}`)
+
+        this.$message.success("Course deleted successfully!")
+      } catch (err) {
+        console.error(err)
+        this.$message.error("Failed to delete course.")
+      }
+
+      this.showCourseModal = false
+
+      await this.loadTeachers()
+      if (this.teacherId) this.filterAll()
+    },
+
+
 
 
     /** Convert [1,2,3] → "Mon, Tue, Wed" */
@@ -383,13 +404,13 @@ export default {
       this.showEditModal = true
     },
 
-    /** Handle save from AvailabilityForm (EDIT) */
+    /** Handle save from AvailabilityForm  */
     async handleEditSubmit(updatedPayload) {
       try {
         await api.post(`${this.language}/update-availability/`, {
           teacherId: this.teacherId,
           slotId: this.selectedSlot.id,
-          updatedSlot: updatedPayload
+          slot: updatedPayload    // 👈 key changed from updatedSlot → slot
         })
 
         this.$message.success("Availability updated.")
@@ -402,6 +423,7 @@ export default {
       await this.loadTeachers()
       if (this.teacherId) this.filterAll()
     },
+
 
 
     /** Handle delete from AvailabilityForm */
