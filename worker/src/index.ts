@@ -6,6 +6,51 @@ type Env = {
 
 const app = new Hono<{ Bindings: Env }>();
 
+// CORS middleware to allow calls from your Pages site
+app.use('*', async (c, next) => {
+  const origin = c.req.header('Origin') || ''
+
+  // Handle preflight
+  if (c.req.method === 'OPTIONS') {
+    // Only allow your Pages origin in production; can relax for testing
+    if (origin === 'https://closed-group-calendar2.pages.dev') {
+      c.header('Access-Control-Allow-Origin', origin)
+    }
+    c.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+    c.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    c.header('Access-Control-Max-Age', '86400') // cache preflight for a day
+    return c.text('', 204)
+  }
+
+  await next()
+
+  // Add CORS headers on actual responses
+  if (origin === 'https://closed-group-calendar2.pages.dev') {
+    c.header('Access-Control-Allow-Origin', origin)
+  }
+  c.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+  c.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+})
+
+// Password protection middleware
+app.use('*', async (c, next) => {
+  const auth = c.req.header("Authorization");
+
+  if (!auth || !auth.startsWith("Bearer ")) {
+    return c.json({ error: "Unauthorized" }, 401);
+  }
+
+  const token = auth.replace("Bearer ", "").trim();
+
+  if (token !== c.env.APP_PASSWORD) {
+    return c.json({ error: "Forbidden" }, 403);
+  }
+
+  await next();
+});
+
+
+
 // =========================
 // GET /api/:language
 // Returns teachers, availability, courses, sessions, blockers
