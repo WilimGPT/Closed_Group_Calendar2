@@ -1,7 +1,6 @@
 import axios from "axios"
 
-// Default to same-origin /api/ (works on Cloudflare Pages + Worker)
-// Override locally with VUE_APP_API_BASE_URL, e.g. http://localhost:8787/api/
+// Default: local dev uses /api; production uses VUE_APP_API_BASE_URL
 const baseURL = process.env.VUE_APP_API_BASE_URL || "/api/"
 
 const api = axios.create({
@@ -9,6 +8,15 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json"
   }
+})
+
+// Attach password from localStorage to every request
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem("calendarPassword")
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
 })
 
 export default api
