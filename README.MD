@@ -1,196 +1,193 @@
-# 📘 Closed Group Calendar - Scheduler MVP
+# 📘 Closed Group Calendar - Scheduler MVP (Production Version)
 
 ---
 
 ## 🧾 Summary
 
-Closed Group Calendar is an internal scheduling tool for managing teacher availability and booking recurring language courses.
-
-The system allows administrators to:
+Closed Group Calendar is an internal scheduling tool used to manage teacher availability and book recurring language courses. Administrators can:
 
 1. Create and manage repeating availability slots
-2. View, edit, and organise existing courses and sessions
+2. View, edit, and organise existing courses and all associated sessions
 3. Generate recurring course schedules
-4. Validate bookings against availability and existing sessions
-5. Detect and optionally override scheduling conflicts
+4. Check availability and detect conflicts
+5. Override collisions when necessary
 
-This project is currently being migrated from a Django + JSON backend to a serverless architecture using Cloudflare.
+The system has now been fully migrated from a Django + JSON backend to a serverless Cloudflare-based architecture.
 
 ---
 
 ## 🏗 Architecture Overview
 
-- **Frontend:** Vue.js (admin interface)
-- **API Layer:** Cloudflare Worker using the Hono framework
+- **Frontend:** Vue.js (Cloudflare Pages)
+- **Backend API:** Cloudflare Worker (Hono)
 - **Database:** Cloudflare D1 (managed SQLite)
-- **Hosting:** Cloudflare Pages (frontend) + Cloudflare Workers (API)
+- **Authentication:** Worker-level shared-secret token (Bearer) + frontend login screen
+- **Hosting:** Cloudflare Pages + Workers
 
-The goal is to maintain a lightweight scheduling engine without running a traditional backend server.
+This model removes the need for a traditional server while keeping operations lightweight and low‑maintenance.
 
 ---
 
 # 🚀 Local Development
 
 ## Requirements
-
 - Node 18+
 - npm
-- Wrangler CLI (Cloudflare Workers)
+- Cloudflare Wrangler CLI
 - Cloudflare account
 
 ---
 
 ## 1. Clone the Repository
-
 ```bash
 git clone <repo-url>
-cd closed-group-calendar
+cd Closed_Group_Calendar2
 ```
 
 ---
 
-## 2. Install and Run Frontend
-
+## 2. Development – Frontend
 ```bash
 cd frontend
 npm install
 npm run serve
 ```
-
-Frontend runs at:
-
+Runs at:
 ```
 http://localhost:8080
 ```
 
 ---
 
-## 3. Run Worker API Locally
-
-From project root:
+## 3. Development – Worker API (Backend)
+From the `worker/` directory:
 
 ```bash
-wrangler dev
+cd worker
+npx wrangler dev
 ```
 
-The Worker will run locally and connect to a local D1 instance.
-
-API base URL (local):
-
+Local Worker URL:
 ```
 http://localhost:8787/api/
 ```
 
+When developing locally, the Worker injects a local `APP_PASSWORD` defined inside `wrangler.jsonc`.
+
 ---
 
-# 🌐 Deployment Model
+# 🌐 Production Deployment
 
-- Frontend is deployed via Cloudflare Pages
-- API runs as a Cloudflare Worker
-- Data is stored in Cloudflare D1
+## Frontend (Cloudflare Pages)
+- Deployment is automatic on push to the configured GitHub branch.
+- Pages injects the environment variable:
+  - `VUE_APP_API_BASE_URL = https://<your-worker>.workers.dev/api/`
 
-No traditional backend server is required.
+## Backend (Cloudflare Worker)
+To deploy production backend:
+```bash
+cd worker
+npx wrangler deploy
+```
+This uploads and activates the Worker and ensures the production D1 database is used.
+
+## Database (Cloudflare D1)
+Schema and seed data are applied using:
+```bash
+npx wrangler d1 execute <DB_NAME> --remote --file=../migrations/0001_schema.sql
+npx wrangler d1 execute <DB_NAME> --remote --file=../migrations/0002_seed_import.sql
+```
+
+---
+
+# 🔐 Authentication Layer
+
+## Worker-side Protection
+Every API request must include:
+```
+Authorization: Bearer <APP_PASSWORD>
+```
+The password is stored in Worker environment variables (Cloudflare dashboard → Worker → Settings → Variables).
+
+## Frontend Login
+- Users must enter the password when loading the app.
+- On success, the password is stored in `localStorage`.
+- If the browser clears storage, user must log in again.
 
 ---
 
 # 🧱 Project Structure
-
 ```
-frontend/          # Vue.js admin interface
-worker/            # Cloudflare Worker API (Hono)
-migrations/        # D1 SQL schema definitions
-seed-data/         # Optional JSON seed data for import
-wrangler.toml      # Worker configuration
-README.md
+frontend/          # Vue.js interface
+worker/            # Cloudflare Worker API
+migrations/        # D1 schema files
+seed-data/         # Seed JSON files
+README.md          # This document
 ```
 
 ---
 
-# 🔌 API Layer (Cloudflare Worker + Hono)
-
-The Worker exposes REST-style endpoints designed to match the original Django API shape in order to minimise frontend changes.
-
+# 🔌 API Endpoints (Cloudflare Worker)
 Base route:
-
 ```
 /api/:language/
 ```
 
 ## Core Endpoints
-
-- `GET /api/:language/`
-  
-  Returns all teachers, availability slots, courses, and sessions for a given language.
-
+- `GET /api/:language/` — Returns teachers, availability, courses, sessions
 - `POST /api/:language/add-availability/`
-
 - `POST /api/:language/update-availability/`
-
 - `POST /api/:language/delete-availability/`
+- `POST /api/:language/book/:teacherId` — Create new course
+- `POST /api/:language/update-course/:courseId` — Edit an existing course
+- `POST /api/:language/add-session/:courseId` — Add a new class to a course
+- `POST /api/:language/delete-course/:courseId` — Delete full course + sessions
 
-- `POST /api/:language/book/:teacherId`
-
-- `POST /api/:language/update-course/:courseId`
-
-- `POST /api/:language/delete-course/:courseId`
-  
-  Deletes a full course and all associated sessions.
-
-Write endpoints may optionally be protected via a shared secret header.
+All write operations require valid authentication.
 
 ---
 
-# 🗄 Database (Cloudflare D1)
+# 🗄 Database Overview
 
-The application uses a relational schema equivalent to the previous JSON structure.
+### Tables:
+- **teachers** — Teacher profiles per language
+- **availability_slots** — Weekly recurring availability blocks
+- **courses** — Recurring course containers
+- **course_sessions** — Individual class sessions within a course
+- **blockers** — Manual blocks (optional)
 
-Core tables:
-
-- `teachers`
-- `availability_slots`
-- `courses`
-- `course_sessions`
-
-The Worker assembles relational data into structured JSON responses for the frontend.
-
-Availability validation logic remains primarily in the frontend for now, while the Worker acts as a data access layer.
+Worker joins data to return frontend-friendly JSON structures.
 
 ---
 
-# 🔄 Migration Background
-
-This project originally used:
-
+# 🔄 Migration Notes
+Originally built on:
 - Django backend
-- JSON file storage per language
+- JSON per-language storage
 
-The current architecture replaces that layer with:
+Migrated to:
+- Serverless Cloudflare Worker API
+- Cloudflare D1 database
+- Vue.js frontend
 
-- A serverless API (Cloudflare Worker)
-- A managed SQLite database (D1)
-
-The migration prioritises:
-
-- Maintaining existing frontend behaviour
-- Preserving API shape
-- Allowing incremental feature expansion
-- Removing dependency on a continuously running backend server
+Benefits:
+- No server maintenance
+- Extremely low operational cost
+- Predictable, simple scaling
 
 ---
 
 # 🛠 Future Enhancements
-
-- Basic authentication layer
-- Role-based access control
-- Database indexing optimisation
-- More granular API endpoints (avoid full dataset loads)
-- Course archival and reporting features
+- Multi-user authentication / role permissions
+- Admin interface for modifying teachers
+- Index optimisation in D1
+- Automated course generation templates
+- Activity logging and audit trail
 
 ---
 
-# 📌 Notes
+# 📌 Internal Use Only
+This system is designed as an internal scheduling tool for the LearnCube team. It is intentionally lightweight and optimised for clarity, speed, and low overhead. Further modular development is possible as the needs of the scheduling system evolve.
 
-This is an internal tool currently being iterated primarily by a single developer with oversight from a senior engineer. The architecture has been selected to balance simplicity, scalability, and low operational overhead.
-
-The system is intentionally lightweight and modular to allow future restructuring if the project scope expands.
+---
 
