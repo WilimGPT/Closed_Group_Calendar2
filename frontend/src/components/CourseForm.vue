@@ -91,12 +91,21 @@
     <el-dialog title="Edit Session" :visible="editingIndex !== null" width="400px">
       <div class="form-row">
         <label>Date</label>
-        <el-date-picker v-model="editDate" type="date" />
+        <el-date-picker
+          v-model="editDate"
+          type="date"
+          value-format="yyyy-MM-dd"
+          format="yyyy-MM-dd"
+        />
       </div>
 
       <div class="form-row">
         <label>Time</label>
-        <el-time-picker v-model="editTime" format="HH:mm" />
+        <el-time-picker
+          v-model="editTime"
+          value-format="HH:mm"
+          format="HH:mm"
+        />
       </div>
 
       <div class="dialog-buttons">
@@ -346,19 +355,27 @@ export default {
       const s = this.sessions[i]
       const local = s.localDateTime.setZone(this.timeZone)
 
-      this.editDate = local.toJSDate()
-      this.editTime = local.toJSDate()
+      this.editDate = local.toISODate()
+      this.editTime = local.toFormat("HH:mm")
     },
 
     saveEdit() {
+      if (!this.editDate || !this.editTime) {
+        this.$message.error("Please select both date and time.")
+        return
+      }
+
       const s = this.sessions[this.editingIndex]
 
-      const newLocal = DateTime.fromJSDate(this.editDate)
-        .set({
-          hour: DateTime.fromJSDate(this.editTime).hour,
-          minute: DateTime.fromJSDate(this.editTime).minute
-        })
-        .setZone(this.timeZone)
+      const newLocal = DateTime.fromISO(
+        `${this.editDate}T${this.editTime}`,
+        { zone: this.timeZone }
+      )
+
+      if (!newLocal.isValid) {
+        this.$message.error("Invalid date/time.")
+        return
+      }
 
       s.localDateTime = newLocal
       s.utcDateTime   = newLocal.toUTC()
