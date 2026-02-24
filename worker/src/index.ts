@@ -352,6 +352,68 @@ const deleteAvailabilityHandler = async (c: any) => {
 app.post("/api/:language/delete-availability", deleteAvailabilityHandler);
 app.post("/api/:language/delete-availability/", deleteAvailabilityHandler);
 
+
+// =========================
+// ADD TEACHER
+// POST /api/:language/add-teacher/
+// Body:
+// {
+//   "name": "New Teacher Name",
+//   "username": "teacher.username" // optional
+// }
+// =========================
+const addTeacherHandler = async (c: any) => {
+  const db = c.env.DB;
+  const language = c.req.param("language");
+
+  const body = await c.req.json() as {
+    name?: string;
+    username?: string | null;
+  };
+
+  const name = (body.name || "").trim();
+  const username = body.username ? body.username.trim() : null;
+
+  if (!name) {
+    return c.json({ ok: false, error: "Missing teacher name" }, 400);
+  }
+
+  // Find the highest existing teacher ID for this language, e.g. en_t7
+  const existing = await db
+    .prepare("SELECT id FROM teachers WHERE language = ? ORDER BY id DESC LIMIT 1")
+    .bind(language)
+    .first<{ id?: string }>();
+
+  let nextIndex = 1;
+  if (existing && existing.id) {
+    const match = existing.id.match(/_t(\d+)$/);
+    if (match) {
+      nextIndex = parseInt(match[1], 10) + 1;
+    }
+  }
+
+  const teacherId = `${language}_t${nextIndex}`;
+
+  await db
+    .prepare("INSERT INTO teachers (id, language, name, username) VALUES (?, ?, ?, ?)")
+    .bind(teacherId, language, name, username)
+    .run();
+
+  return c.json(
+    {
+      ok: true,
+      teacher: {
+        id: teacherId,
+        language,
+        name,
+        username
+      }
+    },
+    201
+  );
+};
+
+
 // =========================
 // BOOK COURSE (CREATE)
 // POST /api/:language/book/:teacherId

@@ -273,34 +273,40 @@ export default {
       const sessionUTC = session.utcDateTime
       const endUTC = sessionUTC.plus({ minutes: this.durationMinutes })
 
-      const hasAvailability = teacher.availabilitySlots.some(slot => {
+      // --- Availability based on recurring weekly slots (OLD LOGIC) ---
+      const hasAvailability = (teacher.availabilitySlots || []).some(slot => {
         const weekdaysArray = Array.isArray(slot.weekdays)
           ? slot.weekdays
           : [slot.weekday]
 
+        const slotLocalMoment = sessionUTC.setZone(slot.timeZone)
+        const slotDateISO = slotLocalMoment.toISODate()
+
         const slotStart = DateTime.fromISO(
-          `${slot.startDate}T${slot.startTime}`,
+          `${slotDateISO}T${slot.startTime}`,
           { zone: slot.timeZone }
         ).toUTC()
 
         const slotEnd = DateTime.fromISO(
-          `${slot.endDate}T${slot.endTime}`,
+          `${slotDateISO}T${slot.endTime}`,
           { zone: slot.timeZone }
         ).toUTC()
 
-        const weekdayOK = weekdaysArray.includes(
-          sessionUTC.setZone(slot.timeZone).weekday
+        return (
+          weekdaysArray.includes(slotLocalMoment.weekday) &&
+          sessionUTC >= slotStart &&
+          endUTC <= slotEnd &&
+          slot.startDate <= slotDateISO &&
+          slot.endDate >= slotDateISO
         )
-        const withinDateRange =
-          sessionUTC >= slotStart && endUTC <= slotEnd
-
-        return weekdayOK && withinDateRange
       })
 
+      // --- Booking conflicts (you can keep the stricter overlap logic if you like) ---
       const hasBookingConflict = (teacher.bookings || []).some(course =>
-        course.sessions.some(s => {
-          const cStart = DateTime.fromISO(s.startDateTime).toUTC()
+        (course.sessions || []).some(s => {
+          const cStart = DateTime.fromISO(s.startDateTime, { zone: course.timeZone || "utc" }).toUTC()
           const cEnd = cStart.plus({ minutes: course.durationMinutes })
+
           return (
             (sessionUTC >= cStart && sessionUTC < cEnd) ||
             (endUTC > cStart && endUTC <= cEnd)
