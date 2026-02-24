@@ -311,17 +311,24 @@ export default {
       })
 
       // --- Booking conflicts (you can keep the stricter overlap logic if you like) ---
-      const hasBookingConflict = (teacher.bookings || []).some(course =>
-        (course.sessions || []).some(s => {
-          const cStart = DateTime.fromISO(s.startDateTime, { zone: course.timeZone || "utc" }).toUTC()
+      let conflictingBooking = null
+
+      for (const course of (teacher.bookings || [])) {
+        for (const s of course.sessions) {
+          const cStart = DateTime.fromISO(s.startDateTime).toUTC()
           const cEnd = cStart.plus({ minutes: course.durationMinutes })
 
-          return (
+          const overlaps =
             (sessionUTC >= cStart && sessionUTC < cEnd) ||
             (endUTC > cStart && endUTC <= cEnd)
-          )
-        })
-      )
+
+          if (overlaps) {
+            conflictingBooking = course
+            break
+          }
+        }
+        if (conflictingBooking) break
+      }
 
       if (!hasAvailability) {
         return {
@@ -331,11 +338,13 @@ export default {
         }
       }
 
-      if (hasBookingConflict) {
+      if (conflictingBooking) {
         return {
           teacherId: teacher.id,
           ok: false,
-          message: "Booking conflict"
+          message: conflictingBooking.groupReference
+            ? `Booked: ${conflictingBooking.groupReference}`
+            : "Booking conflict"
         }
       }
 
